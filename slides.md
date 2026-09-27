@@ -340,7 +340,7 @@ Google Drive (externo, via MCP)
 ---
 
 # Prática de IA Agêntica
->[Exemplos](https://github.com/jespimentel) --> corrigir link
+>[Exemplos](https://github.com/jespimentel/ia_agentica_compacto/tree/main/prompts)
 
 
 ---
@@ -349,8 +349,8 @@ Google Drive (externo, via MCP)
 
 ---
 
-- Estrutura de prompt não é estética, é semântica
-- Em agentes, pense em **Context Engineering** (contexto certo). Volte a arquivar o trabalho produzido na Promotoria
+- Estrutura de prompt com Markdown ou XML não é estética, é semântica
+- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) o trabalho produzido na Promotoria
 - Divida tarefas complexas em subtarefas (use outro agente apenas quando a vantagem for evidente)
 - Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
 - Teste o VS Code com as extensões do Claude, Codex ou Continue
