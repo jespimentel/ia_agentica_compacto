@@ -18,7 +18,7 @@ style: |
 
 [GitHub](https://github.com/jespimentel) | [Blog](https://jespimentel.blogspot.com/) | [YouTube](https://www.youtube.com/@jespimentel)
 
-v. 2026.10
+v. 2.0
 
 ---
 
@@ -55,7 +55,7 @@ v. 2026.10
 
 ---
 
-## Pós-treinamento (Ordem X Planejamento)
+## Pós-treinamento (Execução de ordens X Planejamento)
 
 **Possibilidades:**
 - _Reinforcement Learning_ com instruções humanas para garantir obediência a regras e formatos
@@ -63,10 +63,6 @@ v. 2026.10
 
 **Abordagem dos modelos de fronteira:**
 - **Equilíbrio:** obediência + capacidades avançadas de raciocínio em múltiplos passos
-
----
-
-![bg fit](img/economia-tempo.jpg)
 
 ---
 
@@ -101,16 +97,26 @@ table {
 
 ---
 
-## A petição lida pela IA do juiz
+## A janela de contexto
+
+- **Limite em tokens**: cuidado com processos muito longos / recursão
+- **Excedente é descartado**: o modelo "esquece" sem avisar
+- **Perdido no meio** (_lost in the middle_): o início e o fim recebem mais atenção
+- **Degradação** (_context rot_): quanto mais contexto irrelevante, pior a resposta
+
+**Mitigação:** OCR e extração prévios, recorte das peças relevantes, conversa nova por tarefa, síntese em arquivo e skills sob demanda
+
+---
+
+## A petição destinada à IA do juiz
 
 - Síntese na abertura: pedido, fatos e provas (se possível)
 - Seções e parágrafos numerados, curtos e monotemáticos (RAG)
 - Prova com remissão exata (fls./ID)
 - Pedidos numerados e específicos no fecho (repetição)
-- Enxuta
-- Sem comandos ocultos
+- Enxuta (talvez seja lida por um humano)
+- Sem comandos ocultos (_prompt injection_)
 - Conferida pelo Promotor de Justiça (risco de alucinação)
-
 
 ---
 
@@ -123,7 +129,7 @@ table {
 
 ![bg right fit](img/trafico-gpt.png)
 
-> Curiosidade: em processo sob nossa análise, a ré usou o ChatGPT para gerar o "cardápio" com os tipos de drogas que comercializava
+> **Curiosidade:** em processo sob nossa análise, a ré usou o ChatGPT para gerar o "cardápio" com os tipos de drogas que comercializava
 
 ---
 
@@ -232,7 +238,7 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 **Conhecimento**
 
-> Recuperação probabilística por RAG
+> Recuperação probabilística por RAG / RAG Agêntico
 
 - **No prompt**: o que se aplica sempre (regras, template, restrições)
 - **No conhecimento**: referência estável, consultada conforme o caso (ex.: catálogo de modelos, manual de regras)
@@ -241,6 +247,8 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 ---
 
 ## Compartilhamento
+
+**Padronização do trabalho da equipe**
 
 ![bg fit right](img/compartilhamento.png)
 
@@ -340,7 +348,7 @@ Google Drive (externo, via MCP)
 ---
 
 # Prática de IA Agêntica
->[Exemplos](https://github.com/jespimentel/ia_agentica_compacto/tree/main/prompts)
+>[Exemplos](https://github.com/jespimentel/ia_agentica_compacto/tree/main/pratica)
 
 
 ---
@@ -354,7 +362,11 @@ Google Drive (externo, via MCP)
 - Divida tarefas complexas em subtarefas (use outro agente apenas quando a vantagem for evidente)
 - Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
 - Teste o VS Code com as extensões do Claude, Codex ou Continue
-- [Conheça o Python e tenha superpoderes](https://jespimentel.github.io/curso_rapido_python/)
+- [Conheça o Python e tenha mais poder](https://jespimentel.github.io/curso_rapido_python/)
+
+---
+
+![bg fit](img/economia-tempo.jpg)
 
 ---
 
