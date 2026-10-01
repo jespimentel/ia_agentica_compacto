@@ -55,7 +55,7 @@ v. 2.0
 
 ---
 
-## Pós-treinamento (Execução de ordens X Planejamento)
+## Pós-treinamento (execução de ordens X planejamento)
 
 **Possibilidades:**
 - _Reinforcement Learning_ com instruções humanas para garantir obediência a regras e formatos
@@ -91,6 +91,10 @@ table {
 - len (p.images)
 - análise de miniaturas
 - cruzamento de informações
+
+## Alternativas
+- Docling
+- Tesseract > md
 
 ![bg right fit](img/ocr.jpg)
 
@@ -357,16 +361,17 @@ Google Drive (externo, via MCP)
 
 ---
 
-- Estrutura de prompt com Markdown ou XML não é estética, é semântica
-- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) o trabalho produzido na Promotoria
-- Divida tarefas complexas em subtarefas (use outro agente apenas quando a vantagem for evidente)
-- Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
-- Teste o VS Code com as extensões do Claude, Codex ou Continue
-- [Conheça o Python e tenha mais poder](https://jespimentel.github.io/curso_rapido_python/)
+![bg fit](img/economia-tempo.jpg)
 
 ---
 
-![bg fit](img/economia-tempo.jpg)
+- Estrutura de prompt com Markdown ou XML não é estética, é **semântica**
+- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) a produção da Promotoria
+- Divida tarefas complexas em subtarefas
+- Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
+- Teste o VS Code com as extensões do Claude, Codex e Continue
+- Conheça o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que ele pode fazer em combinação com a IA
+- Compartilhe conhecimento, skills, prompts etc. (a tecnologia é nova e todos estamos aprendendo a usá-la)  
 
 ---
 
