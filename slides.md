@@ -387,4 +387,4 @@ Google Drive (externo, via MCP)
 
 - [PIMENTEL, José Eduardo de Souza. A IA Generativa na Promotoria (apostila)](https://github.com/jespimentel/ia_gen_na_promotoria/blob/main/apostila/IA_Gen_Promotoria_Pimentel.pdf)
 
-- [____. Minicurso de Bauru (site)](https://github.com/jespimentel/minicurso_bauru/blob/main/docs/index.md)
+- [____. Minicurso de Bauru (site)](https://jespimentel.github.io/minicurso_bauru/)
