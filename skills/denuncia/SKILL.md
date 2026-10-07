@@ -1,6 +1,6 @@
 ---
 name: denuncia
-description: 'Redige, no próprio chat, minuta de denúncia criminal mediante pedido expresso, a partir de PDF, TXT ou Markdown fornecido pelo usuário. Usa exemplos/ apenas como referência de estilo e templates/denuncia.md como estrutura.'
+description: 'Redige, no próprio chat, minuta de denúncia criminal mediante pedido expresso, a partir de PDF, TXT ou Markdown fornecido pelo usuário. Usa references/ (com o índice references/indice.md) apenas como referência de estilo e templates/denuncia.md como estrutura.'
 ---
 
 # Skill: Elaboração de Denúncia Criminal
@@ -46,23 +46,27 @@ Se o usuário fornecer vários arquivos e indicar que todos integram o mesmo cas
 
 Se forem fornecidas versões em PDF e arquivo textual, TXT ou Markdown, do mesmo caso, use o arquivo textual como fonte operacional apenas quando o usuário o apresentar como transcrição do PDF. Havendo divergência material identificável entre eles, interrompa a redação e aponte o conflito ao usuário.
 
-## Base de conhecimento: `exemplos/` (disclosure progressivo)
+## Base de conhecimento: `references/` (disclosure progressivo)
 
-A base de conhecimento de estilo desta skill é a pasta `exemplos/`, composta por denúncias reais e sigilosas. O nome de cada arquivo funciona como índice: indica o tipo penal e as circunstâncias relevantes do caso, permitindo localizar o modelo mais próximo sem ler todas as peças integralmente.
+A base de conhecimento de estilo desta skill é a pasta `references/`, composta por denúncias reais e sigilosas, e pelo índice `references/indice.md`. Cada entrada do índice traz, sob o cabeçalho `### <nome exato do arquivo>.md`, um resumo padronizado da peça: sujeitos; conduta nuclear com dados objetivos; contexto da descoberta e situação prisional; enquadramento (crime único, concurso material, continuidade delitiva, tentativa, "por N vezes", com a capitulação exata). O índice permite localizar o modelo mais próximo sem ler as peças integralmente.
 
 Fluxo obrigatório:
 
-1. Liste os arquivos de `exemplos/` e selecione os candidatos pelo nome, comparando o tipo penal e as circunstâncias nele indicados com o caso constante do arquivo-fonte. Priorize o mesmo tipo penal. Nunca selecione pelo rito, pois o rito decorre do crime efetivamente apurado.
+1. Leia `references/indice.md`. Não liste a pasta nem abra outras peças nesta etapa.
 
-2. Havendo mais de um candidato, leia apenas o primeiro parágrafo “Consta...” de cada um, no máximo três, e escolha o de modus operandi mais semelhante ao do caso.
+2. Selecione, pelo índice, o exemplo mais aderente ao caso constante do arquivo-fonte, nesta ordem de prioridade:
+   a) mesmo tipo penal;
+   b) mesma estrutura de imputação (número de denunciados, concurso material, continuidade delitiva, "por N vezes", tentativa, contexto de violência doméstica);
+   c) modus operandi mais semelhante.
+   Nunca selecione pelo rito, pois o rito decorre do crime efetivamente apurado.
 
-3. Leia apenas o arquivo escolhido e extraia exclusivamente sua forma: o encadeamento dos blocos “Consta...”, o bloco único “Apurou-se que”, o fraseado da capitulação e do pedido final, inclusive a fórmula de notificação ou citação e o formato do rol.
+3. Leia apenas o arquivo escolhido, em `references/`, e extraia exclusivamente sua forma: o encadeamento dos blocos “Consta...”, o bloco único “Apurou-se que”, o fraseado da capitulação e do pedido final, inclusive a fórmula de notificação ou citação e o formato do rol.
 
 4. Se nenhum arquivo for plenamente aderente quanto ao tipo penal e ao modus operandi, escolha o arquivo de espécie de crime mais próxima do caso (por exemplo, outro crime patrimonial para um crime patrimonial, outro crime contra a pessoa para um crime contra a pessoa) e use-o apenas como referência de forma e estilo, nunca de fato. Registre na análise preliminar “material recuperado não plenamente aderente” e identifique o arquivo usado como referência aproximada. Se não houver nenhum arquivo de espécie minimamente próxima, registre “material recuperado não aderente” e aplique apenas a estrutura de `templates/denuncia.md`.
 
 5. Informe ao usuário, em uma linha, qual arquivo foi utilizado como referência (plena ou aproximada) ou que nenhum arquivo era aderente.
 
-Use apenas a forma. É proibido incorporar à nova peça nomes, qualificações, datas, locais, valores, números de inquérito ou quaisquer fatos provenientes de `exemplos/`. Toda matéria fática deve vir exclusivamente do arquivo-fonte e dos elementos adicionais expressamente fornecidos pelo usuário. A forma dos exemplos cede às regras normativas: rito, qualificação, concurso, capitulação e reparação decorrem sempre do caso real.
+Use apenas a forma. É proibido incorporar à nova peça nomes, qualificações, datas, locais, valores, números de inquérito ou quaisquer fatos provenientes de `references/`. Toda matéria fática deve vir exclusivamente do arquivo-fonte e dos elementos adicionais expressamente fornecidos pelo usuário. A forma dos exemplos cede às regras normativas: rito, qualificação, concurso, capitulação e reparação decorrem sempre do caso real.
 
 ## Estilo e formatação obrigatórios
 
@@ -156,13 +160,13 @@ Se o número de pessoas exceder o limite legal, registre o excedente na análise
 
 - Em casos de violência doméstica e familiar, identifique a vítima apenas pelas iniciais em todos os trechos, inclusive no rol e no pedido de reparação.
 
-- Não incorpore nomes, qualificações, datas, locais, valores, números de inquérito ou fatos provenientes de `exemplos/`.
+- Não incorpore nomes, qualificações, datas, locais, valores, números de inquérito ou fatos provenientes de `references/`.
 
 - Não preencha lacunas por inferência ou suposição.
 
 - Não use pesquisa na internet, jurisprudência, notícias, bancos de dados ou memória geral para completar fatos do caso.
 
-- Não inclua fotografias, imagens, esquemas ou gráficos na minuta da denúncia, ainda que constem do arquivo-fonte ou de `exemplos/`. A minuta é sempre texto em prosa corrida; referencie a prova visual apenas por remissão a fls. (ex.: "cf. fotografias de fls. X"), nunca a reproduza ou descreva graficamente no corpo da peça. Observe o formato de `templates/denuncia.md` e de `exemplos/` quanto a isso.
+- Não inclua fotografias, imagens, esquemas ou gráficos na minuta da denúncia, ainda que constem do arquivo-fonte ou de `references/`. A minuta é sempre texto em prosa corrida; referencie a prova visual apenas por remissão a fls. (ex.: "cf. fotografias de fls. X"), nunca a reproduza ou descreva graficamente no corpo da peça. Observe o formato de `templates/denuncia.md` e de `references/` quanto a isso.
 
 ## Elementos adicionais do usuário
 
@@ -192,7 +196,7 @@ Depoimentos: {{listar TODOS os depoimentos constantes do arquivo-fonte, um por p
 
 Rol de testemunhas: {{Nome}} — {{categoria}} — fls. {{X}}
 
-Trecho(s) recuperado(s) e origem: {{arquivo de exemplos/ utilizado}} — aderência ao caso (tipo penal / modus operandi) ou “material recuperado não aderente”
+Trecho(s) recuperado(s) e origem: {{arquivo de references/ utilizado}} — aderência ao caso (tipo penal / modus operandi) ou “material recuperado não aderente”
 
 OCR: {{“Não foi necessário” ou lista das páginas em que o OCR foi aplicado, por arquivo-fonte}}
 
@@ -224,7 +228,7 @@ Ao processar um único caso, apresente esse bloco antes do texto da denúncia. S
 
 ## Redação e saída
 
-Não presuma a existência de pastas de entrada ou saída e não faça varredura automática de diretórios em busca de casos. Processe somente os arquivos fornecidos ou expressamente indicados pelo usuário na conversa. A listagem da pasta `exemplos/` da própria skill, prevista na seção “Base de conhecimento”, não é varredura vedada por esta regra.
+Não presuma a existência de pastas de entrada ou saída e não faça varredura automática de diretórios em busca de casos. Processe somente os arquivos fornecidos ou expressamente indicados pelo usuário na conversa. A leitura de `references/indice.md` e da peça escolhida em `references/`, previstas na seção “Base de conhecimento”, não constitui varredura vedada por esta regra.
 
 A saída é exclusivamente uma minuta apresentada no próprio chat. Não crie, grave, anexe nem disponibilize arquivos de saída. Não gere Markdown para download, `.docx`, `.pdf` ou qualquer outro documento, ainda que o ambiente permita gravar arquivos.
 

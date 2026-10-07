@@ -47,7 +47,7 @@ todos os crimes desse denunciado na mesma frase, separados por vírgula}}{{, na 
 {{NOME 1}} como incurso {{no(s) artigo(s)...}}{{, na forma do art. 69/70/71 do CP, se concurso}};
 e {{NOME 2}} como incurso {{no(s) artigo(s)...}}{{, na forma do art. 69/70/71 do CP, se
 concurso}}, requerendo que, recebida e autuada esta, seja(m) o(s) denunciado(s) {{notificado(s)/citado(s),
-com o rito e a fórmula exata (fraseado) do exemplo recuperado em exemplos/, mantendo o rito e o
+com o rito e a fórmula exata (fraseado) do exemplo recuperado em references/, mantendo o rito e o
 número de testemunhas corretos para o crime real apurado}}, até final condenação,
 {{[SE REPARAÇÃO APLICÁVEL] com fixação de valor mínimo de R$ {{valor}} para reparação dos
 {{danos materiais / danos materiais e morais}} causados pela infração (art. 387, inc. IV, do

@@ -18,7 +18,7 @@ style: |
 
 [GitHub](https://github.com/jespimentel) | [Blog](https://jespimentel.blogspot.com/) | [YouTube](https://www.youtube.com/@jespimentel)
 
-v. 2.0
+v. 2.1
 
 ---
 
@@ -352,7 +352,9 @@ Google Drive (externo, via MCP)
 ---
 
 # Prática de IA Agêntica
->[Exemplos](https://github.com/jespimentel/ia_agentica_compacto/tree/main/pratica)
+- [Prompts](https://github.com/jespimentel/ia_agentica_compacto/tree/main/prompts)
+- [Skills](https://github.com/jespimentel/ia_agentica_compacto/tree/main/skills)
+- [Scripts](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) 
 
 
 ---
@@ -366,7 +368,7 @@ Google Drive (externo, via MCP)
 ---
 
 - Estrutura de prompt com Markdown ou XML não é estética, é **semântica**
-- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) a produção da Promotoria
+- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py) a produção da Promotoria
 - Divida tarefas complexas em subtarefas
 - Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
 - Teste o VS Code com as extensões do Claude, Codex e Continue
