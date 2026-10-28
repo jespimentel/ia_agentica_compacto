@@ -1,6 +1,6 @@
 ---
 name: "indexador-denuncias"
-description: "Indexa uma pasta de denúncias em .docx, convertendo cada peça para .md em references/ e gerando indice.md com resumo padronizado de cada uma, para disclosure progressivo."
+description: "Indexa uma pasta de denúncias em .docx, convertendo cada peça para .md em references/ e gerando references/indice.md com resumo padronizado de cada uma, para disclosure progressivo."
 ---
 
 # Indexador de denúncias
@@ -9,193 +9,40 @@ Transforma uma pasta com peças de denúncia (.docx) em um acervo de consulta pr
 
 ```
 <pasta>/
-├── indice.md          ← resumos curtos de todas as peças (lido primeiro)
 ├── references/
+│   ├── indice.md      ← resumos curtos de todas as peças (lido primeiro)
 │   ├── <nome da peça 1>.md
 │   └── <nome da peça 2>.md
 └── (os .docx originais, intactos)
 ```
 
-Quem consultar o acervo (o próprio Claude, outra skill, um projeto) lê só o `indice.md`, escolhe as peças pertinentes e abre apenas os `.md` correspondentes em `references/`.
+Quem consultar o acervo (o próprio Claude, outra skill, um projeto) lê só o `references/indice.md`, escolhe as peças pertinentes e abre apenas os `.md` correspondentes, na mesma pasta. A pasta `references/` é autocontida e pode ser copiada inteira para outra skill (por exemplo, a skill `denuncia`).
 
 ## Regras gerais
 
 - Nunca alterar, mover ou apagar os .docx originais.
 - Cada `.md` tem exatamente o mesmo nome do `.docx` (só troca a extensão), inclusive espaços duplos e acentos. Não "limpar" nomes.
+- O `indice.md` usa cabeçalhos `### <nome exato do arquivo>.md`, idênticos aos nomes em `references/`. O nome `indice.md` é reservado: um `.docx` chamado "indice" deve ser renomeado.
 - Trabalhar na própria máquina do usuário (Cowork): usar `device_bash` sobre a pasta montada em `$HOME/mnt/<pasta>`. Não fazer stage dos .docx para a nuvem. Só se `device_bash` não existir, fazer stage e rodar na nuvem, devolvendo os resultados com `device_commit_files`.
-- Scripts e arquivos temporários ficam em `$HOME/.indexador/` (fora de `mnt/`, invisível ao usuário), nunca na pasta do usuário.
+- Scripts e arquivos temporários ficam em `$HOME/.indexador/` (fora de `mnt/`, invisível ao usuário), nunca na pasta do usuário. Os scripts são mantidos em `scripts/` nesta skill; o Passo 2 os instala.
 
 ## Passo 1. Localizar a pasta
 
 1. O usuário indica a pasta. Se ela não estiver conectada, pedir acesso com `device_request_folder_access` (caminho absoluto, motivo curto).
-2. Listar o conteúdo e confirmar: quantidade de .docx, existência prévia de `indice.md` e `references/`.
-3. Se `indice.md` já existir, operar em **modo incremental** (só peças novas ou alteradas), salvo pedido expresso de refazer tudo (usar `--force` na conversão e apagar as entradas antigas do índice se o usuário autorizar).
+2. Listar o conteúdo e confirmar: quantidade de .docx, existência prévia de `references/` e de `references/indice.md`. Se houver um `indice.md` antigo na raiz da pasta (versão anterior da skill), ele não é apagado: o Passo 5 aproveita suas entradas e as converte para o novo formato. Ao final, perguntar ao usuário se quer remover o arquivo antigo.
+3. Se `references/indice.md` (ou o `indice.md` antigo da raiz) já existir, operar em **modo incremental** (só peças novas ou alteradas), salvo pedido expresso de refazer tudo (usar `--force` na conversão e apagar as entradas antigas do índice se o usuário autorizar).
 
 ## Passo 2. Instalar os scripts
 
-Verificar `which python3`. Gravar os dois scripts abaixo em `$HOME/.indexador/` via heredoc (`cat > ... <<'EOF'`). Só usam a biblioteca padrão do Python.
+Verificar `which python3`. A skill traz dois scripts em `scripts/` (biblioteca padrão do Python, sem dependências):
 
-### docx2md.py
+- `scripts/docx2md.py`: converte os .docx em .md dentro de `references/`.
+- `scripts/montar_indice.py`: monta ou atualiza `references/indice.md` a partir dos resumos.
 
-```python
-#!/usr/bin/env python3
-"""Converte .docx em .md usando apenas a biblioteca padrao.
-Uso: python3 docx2md.py <pasta_origem> <pasta_references> [--force]
-"""
-import re, sys, zipfile
-from pathlib import Path
-from xml.etree import ElementTree as ET
+Como a conversão roda na máquina do usuário, instalar os dois em `$HOME/.indexador/`: se a pasta da skill estiver acessível na máquina, copiar com `cp`; caso contrário, ler cada arquivo de `scripts/` e gravá-lo em `$HOME/.indexador/` por heredoc com delimitador entre aspas simples (`cat > ... <<'EOF'`), sem alterar uma linha. Depois, validar:
 
-W = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
-
-def run_text(r):
-    out = []
-    for el in r:
-        if el.tag == W + 't':
-            out.append(el.text or '')
-        elif el.tag == W + 'tab':
-            out.append(' ')
-        elif el.tag in (W + 'br', W + 'cr'):
-            out.append('\n')
-    return ''.join(out)
-
-def is_bold(r):
-    rpr = r.find(W + 'rPr')
-    b = rpr.find(W + 'b') if rpr is not None else None
-    return b is not None and b.get(W + 'val') not in ('0', 'false', 'none')
-
-def para_md(p):
-    segs = []
-    for r in p.iter(W + 'r'):
-        t = run_text(r)
-        if not t:
-            continue
-        b = is_bold(r)
-        if segs and segs[-1][1] == b:
-            segs[-1][0] += t
-        else:
-            segs.append([t, b])
-    out = ''
-    for t, b in segs:
-        if b and t.strip():
-            lead = t[:len(t) - len(t.lstrip())]
-            trail = t[len(t.rstrip()):]
-            out += f'{lead}**{t.strip()}**{trail}'
-        else:
-            out += t
-    out = re.sub(r'[  ]{2,}', ' ', out).strip()
-    st = p.find(f'{W}pPr/{W}pStyle')
-    if out and st is not None:
-        m = re.match(r'(?:heading|t[ií]tulo)\s*(\d)', st.get(W + 'val', ''), re.I)
-        if m:
-            out = '#' * min(int(m.group(1)), 6) + ' ' + out.replace('**', '')
-    return out
-
-def table_md(tbl):
-    rows = []
-    for tr in tbl.findall(W + 'tr'):
-        cells = [' '.join(filter(None, (para_md(p) for p in tc.iter(W + 'p')))).replace('|', '/')
-                 for tc in tr.findall(W + 'tc')]
-        rows.append('| ' + ' | '.join(cells) + ' |')
-    if rows:
-        n = rows[0].count('|') - 1
-        rows.insert(1, '|' + ' --- |' * n)
-    return '\n'.join(rows)
-
-def convert(src, dst):
-    with zipfile.ZipFile(src) as z:
-        root = ET.fromstring(z.read('word/document.xml'))
-    blocks = []
-    for el in root.find(W + 'body'):
-        if el.tag == W + 'p':
-            t = para_md(el)
-        elif el.tag == W + 'tbl':
-            t = table_md(el)
-        else:
-            continue
-        if t:
-            blocks.append(t)
-    text = '\n\n'.join(blocks) + '\n'
-    dst.write_text(text, encoding='utf-8')
-    return len(text)
-
-def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    force = '--force' in sys.argv
-    if len(args) != 2:
-        sys.exit(__doc__)
-    src_dir, ref_dir = Path(args[0]), Path(args[1])
-    ref_dir.mkdir(parents=True, exist_ok=True)
-    ok, skip, err, curtos = [], [], [], []
-    for f in sorted(src_dir.iterdir(), key=lambda p: p.name):
-        if f.suffix.lower() != '.docx' or f.name.startswith('~$'):
-            continue
-        dst = ref_dir / (f.stem + '.md')
-        if dst.exists() and not force and dst.stat().st_mtime >= f.stat().st_mtime:
-            skip.append(f.name)
-            continue
-        try:
-            n = convert(f, dst)
-            ok.append(f.name)
-            if n < 500:
-                curtos.append(f.name)
-        except Exception as e:
-            err.append(f'{f.name}: {e}')
-    outros = sorted(p.name for p in src_dir.iterdir()
-                    if p.is_file() and p.suffix.lower() in ('.doc', '.odt', '.rtf', '.pdf'))
-    print(f'Convertidos: {len(ok)} | Ja existentes (pulados): {len(skip)} | Erros: {len(err)}')
-    for o in ok:
-        print('CONVERTIDO (resumir):', o)
-    for e in err:
-        print('ERRO', e)
-    for c in curtos:
-        print('ATENCAO texto muito curto (verificar):', c)
-    for o in outros:
-        print('IGNORADO (formato nao .docx):', o)
-
-if __name__ == '__main__':
-    main()
-```
-
-### montar_indice.py
-
-```python
-#!/usr/bin/env python3
-"""Monta/atualiza indice.md a partir das entradas redigidas.
-Uso: python3 montar_indice.py <pasta_destino> <pasta_entradas>
-Cada entrada: <pasta_entradas>/<nome do arquivo sem extensao>.txt com o resumo.
-"""
-import re, sys
-from pathlib import Path
-
-CAB = ('# Índice das denúncias\n\n'
-       'Cada peça está integralmente em `references/<mesmo nome do arquivo>.md`. '
-       'Leia aqui os resumos e abra apenas as peças pertinentes.\n')
-
-def main():
-    if len(sys.argv) != 3:
-        sys.exit(__doc__)
-    dest, ent = Path(sys.argv[1]), Path(sys.argv[2])
-    idx = dest / 'indice.md'
-    blocos = {}
-    if idx.exists():
-        for m in re.finditer(r'^### (.+?)\n(.*?)(?=^### |\Z)', idx.read_text(encoding='utf-8'), re.M | re.S):
-            blocos[m.group(1).strip()] = m.group(2).strip()
-    for f in ent.glob('*.txt'):
-        blocos[f.stem + '.docx'] = f.read_text(encoding='utf-8').strip()
-    refs = {p.stem + '.docx' for p in (dest / 'references').glob('*.md')}
-    faltando = sorted(refs - blocos.keys())
-    orfaos = sorted(blocos.keys() - refs)
-    corpo = '\n\n'.join(f'### {k}\n{v}' for k, v in sorted(blocos.items()) if k in refs)
-    idx.write_text(CAB + '\n' + corpo + '\n', encoding='utf-8')
-    print(f'indice.md com {len([k for k in blocos if k in refs])} entradas')
-    for k in faltando:
-        print('SEM RESUMO:', k)
-    for k in orfaos:
-        print('RESUMO SEM PECA (descartado):', k)
-
-if __name__ == '__main__':
-    main()
+```bash
+python3 -m py_compile "$HOME/.indexador/docx2md.py" "$HOME/.indexador/montar_indice.py" && echo ok
 ```
 
 ## Passo 3. Converter
@@ -239,10 +86,10 @@ Gravar cada resumo, assim que redigido, em `$HOME/.indexador/entradas/<nome sem 
 python3 "$HOME/.indexador/montar_indice.py" "$HOME/mnt/<pasta>" "$HOME/.indexador/entradas"
 ```
 
-O script preserva as entradas já existentes no `indice.md`, substitui as das peças reconvertidas, acrescenta as novas, ordena por nome de arquivo e descarta resumos sem peça correspondente. Formato de cada entrada (idêntico ao modelo):
+O script grava `references/indice.md` e preserva as entradas já existentes (do índice em `references/` ou, na primeira rodada após a atualização da skill, do `indice.md` antigo da raiz, convertendo os cabeçalhos `.docx` para `.md`), substitui as das peças reconvertidas, acrescenta as novas, ordena por nome de arquivo e descarta resumos sem peça correspondente. O próprio `indice.md` nunca é tratado como peça. Formato de cada entrada (idêntico ao modelo):
 
 ```
-### <nome original>.docx
+### <nome original>.md
 <parágrafo do resumo>
 ```
 
@@ -251,6 +98,6 @@ Se o relatório apontar **SEM RESUMO**, voltar ao Passo 4 para esses arquivos e 
 ## Passo 6. Verificar e reportar
 
 1. Conferir por amostragem 2 ou 3 entradas contra as peças (capitulação e quantidades).
-2. Confirmar que o número de `.md` em `references/` bate com o de entradas no índice.
+2. Confirmar que o número de `.md` em `references/` (sem contar `indice.md`) bate com o de entradas no índice.
 3. Limpar `$HOME/.indexador/entradas/` (fora da pasta do usuário).
-4. Responder em poucas linhas: quantas peças indexadas, novas nesta rodada, problemas (erros, peças sem texto, formatos ignorados) e onde estão `indice.md` e `references/`.
+4. Responder em poucas linhas: quantas peças indexadas, novas nesta rodada, problemas (erros, peças sem texto, formatos ignorados) e que o índice está em `references/indice.md`. Se o `indice.md` antigo da raiz existir, perguntar se deve ser removido.
