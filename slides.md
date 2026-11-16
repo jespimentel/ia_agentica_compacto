@@ -18,7 +18,7 @@ style: |
 
 [GitHub](https://github.com/jespimentel) | [Blog](https://jespimentel.blogspot.com/) | [YouTube](https://www.youtube.com/@jespimentel)
 
-v. 2.1
+v. 20261116
 
 ---
 
@@ -26,43 +26,52 @@ v. 2.1
 
 # Agenda
 
-- Introdução à IA Agêntica
-- Engenharia de Prompt
-- Agentes Declarativos do Copilot
+**Intuições**
+
+- Evolução das LLMs
+- Engenharias de Prompt e de Contexto
 - Skills e MCP (conectores e plugins)
-- Agentes de Execução e Harness
-- **Prática de IA Agêntica**
-- Dicas e Conclusões
+- Agentes de Execução
 
----
+**Prática de IA Agêntica**
 
-# Introdução à IA Agêntica
+**Dicas e Conclusões**
 
 ---
 
 ![bg right](img/attention.jpg)
 
-## Evolução dos LLM
+# Evolução dos LLM
 
 - **2017** -> Transformer + _self-attention_ (paralelização massiva)
 - **2018 a 2021** -> Escala + modelos de fundação (GPT e Bert) -> Capacidades emergentes
 - **2022 a 2023** -> Multimodalidade + expansão da tecnologia
-- **2024 ~** -> Raciocínio + Agentes (+ Eficiência)
+- **2024 ~** -> Raciocínio + Ferramentas (Agentes)
 
 ---
 
-![bg fit](img/agentes.jpg)
+![bg fit](img/fluxo_treinamento_pre_sft_rlhf.png)
+<!-- _footer: "Fonte: o autor." -->
 
 ---
 
-## Pós-treinamento (execução de ordens X planejamento)
+# Pós-treinamento: execução de ordens | planejamento
 
-**Possibilidades:**
 - _Reinforcement Learning_ com instruções humanas para garantir obediência a regras e formatos
 - _Reinforcement Learning_ com autonomia e planejamento, para exploração de cenários e tomada de decisão independente (violação do Hugging Face e benchmark _ExploitGym_)
 
-**Abordagem dos modelos de fronteira:**
+**Abordagem atual dos modelos de fronteira:**
 - **Equilíbrio:** obediência + capacidades avançadas de raciocínio em múltiplos passos
+
+---
+
+![bg w:1100](img/agentes.jpg)
+<!-- _footer: "Fonte: ALBADA, Michael. Construindo aplicações com agentes de IA [ebook]." -->
+
+---
+
+![bg fit](img/deterministico_vs_probabilistico_llm.png)
+<!-- _footer: "Fonte: o autor." -->
 
 ---
 
@@ -77,15 +86,20 @@ table {
 }
 </style>
 
-## Probabilístico X Determinístico
+# Determinístico X Probabilístico
 
 | | |
 |---|---|
-| ![w:450px](img/probabilistico.jpg) | ![w:450px](img/deterministico.jpg) |
+| ![w:380px](img/deterministico.jpg) | ![w:380px](img/probabilistico.jpg) |
+<!-- _footer: "Fonte: o autor." -->
+---
+
+![bg w:1000](img/economia-tempo.jpg)
+<!-- _footer: "Fonte: HUYEN, Chip. AI Engineering: Building Applications with Foundation Models [ebook]." -->
 
 ---
 
-## O problema do OCR
+# OCR
 
 - len(texto) 
 - len (p.images)
@@ -93,26 +107,32 @@ table {
 - cruzamento de informações
 
 ## Alternativas
+
 - Docling
 - Tesseract > md
 
 ![bg right fit](img/ocr.jpg)
 
-
 ---
 
-## A janela de contexto
+# Janela de contexto
 
 - **Limite em tokens**: cuidado com processos muito longos / recursão
 - **Excedente é descartado**: o modelo "esquece" sem avisar
-- **Perdido no meio** (_lost in the middle_): o início e o fim recebem mais atenção
+- **Perdido no meio** (_lost in the middle_): o fim recebe mais atenção
 - **Degradação** (_context rot_): quanto mais contexto irrelevante, pior a resposta
 
 **Mitigação:** OCR e extração prévios, recorte das peças relevantes, conversa nova por tarefa, síntese em arquivo e skills sob demanda
 
 ---
 
-## A petição destinada à IA do juiz
+![bg w:1000](img/agulha_palheiro.png)
+
+<!-- _footer: "Fonte: KAMRADT, Greg. *Needle in a Haystack: pressure testing LLMs* (GPT_4_testing.png). GitHub. Disponível em: https://github.com/gkamradt/needle-in-a-haystack/" -->
+
+---
+
+# A petição que é lida pela IA do juiz
 
 - Síntese na abertura: pedido, fatos e provas (se possível)
 - Seções e parágrafos numerados, curtos e monotemáticos (RAG)
@@ -124,9 +144,9 @@ table {
 
 ---
 
-## Aviso nº 009/2025-CGMP
+# Aviso nº 009/2025-CGMP
 
-- Visão geral sobre a regulamentação do uso da IA no MPSP
+- Regulamentação do uso da IA no MPSP
 - O que devemos **realmente** restringir?
 
 ---
@@ -134,10 +154,6 @@ table {
 ![bg right fit](img/trafico-gpt.png)
 
 > **Curiosidade:** em processo sob nossa análise, a ré usou o ChatGPT para gerar o "cardápio" com os tipos de drogas que comercializava
-
----
-
-# Engenharia de Prompt
 
 ---
 
@@ -172,7 +188,7 @@ table {
 
 ---
 
-## Delimitação das seções
+# Delimitação das seções
 
 **Markdown**
 
@@ -221,7 +237,7 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 ---
 
-## Técnicas de prompting
+# Técnicas de prompting
 
 | Cenário | Técnica recomendada |
 |---|---|
@@ -234,11 +250,7 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 ---
 
-# Agentes Declarativos do Copilot
-
----
-
-## Visão geral do "agente"
+# Visão geral do agente "declarativo" do Copilot
 
 **Conhecimento**
 
@@ -250,33 +262,35 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 ---
 
-## Compartilhamento
+# Padronização
 
-**Padronização do trabalho da equipe**
+**Compartilhamento de agente entre os membros da equipe**
 
 ![bg fit right](img/compartilhamento.png)
+<!-- _footer: "Fonte: O autor." --> 
 
 ---
 
-**Copilot Premium**
+**RAG com o Copilot Premium**
 
-![Análise de crime tributário](img/copilot-premium.png)
-
----
-
-# Skills e MCP (conectores e plugins)
+![](img/copilot-premium.png)
+<!-- _footer: "Fonte: O autor." --> 
 
 ---
 
-## Context engineering
+# Context engineering
 
 > A tendência conceitual mais importante atualmente é a passagem de prompt engineering para context engineering. Em sistemas agênticos, a qualidade não depende apenas da instrução, mas também de quais documentos, exemplos, resultados de busca, ferramentas, memórias, skills e estados devem entrar na janela de contexto. 
 
-- **Skills**: mecanismos de descoberta e carregamento sob demanda, que evitam o contexto excessivo.
+---
+
+![bg w:500](img/post_andrej.jpg)
+<!-- _footer: "Fonte: https://x.com/karpathy/status/1937902205765607626" -->
+
 
 ---
 
-**Skills**
+**Skills**: mecanismos de descoberta e carregamento **sob demanda**, que evitam o contexto excessivo.
 
 - Quando usar?
 - Tecnologia agnóstica (Padrão aberto)
@@ -324,34 +338,30 @@ Google Drive (externo, via MCP)
 
 ---
 
-## Copilot e Skills
+# Copilot e Skills
 
-![bg fit](img/copilot-skills.jpg)
-
----
-
-# Agentes de Execução e Harness
+![w:600](img/copilot-skills.jpg)
+<!-- _footer: "Fonte: o autor." --> 
 
 ---
 
-**Agente de Execução e Harness**
+# Agentes de Execução no seu computador
 
 - Quando usar?
     - Para tarefas autônomas que exigem execução de código e controle de estado
 - O que é?
     - **Agente**: O modelo (LLM) responsável pelo raciocínio, planejamento e tomada de decisão
     - **Harness**: O ambiente/runtime que envolve o agente para gerenciar a execução
-- Regra prática: A IA decide o *quê* fazer; o Harness possibilita a execução do plano
 
 ---
 
-## VS Code + Claude Code/Codex/Continue
-
-![VS Code](img/vs-code.jpg)
+![bg w:1000](img/vs-code.jpg)
+<!-- _footer: "VS Code + Claude Code/Codex/Continue. Fonte: o autor." -->
 
 ---
 
 # Prática de IA Agêntica
+
 - [Prompts](https://github.com/jespimentel/ia_agentica_compacto/tree/main/prompts)
 - [Skills](https://github.com/jespimentel/ia_agentica_compacto/tree/main/skills)
 - [Scripts](https://github.com/jespimentel/ia_agentica_compacto/tree/main/scripts) 
@@ -359,25 +369,19 @@ Google Drive (externo, via MCP)
 
 ---
 
-# Dicas e Conclusões
-
----
-
-![bg fit](img/economia-tempo.jpg)
-
----
+# Dicas / Conclusões
 
 - Estrutura de prompt com Markdown ou XML não é estética, é **semântica**
 - Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py) a produção da Promotoria
 - Divida tarefas complexas em subtarefas
 - Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
 - Teste o VS Code com as extensões do Claude, Codex e Continue
-- Conheça o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que ele pode fazer em combinação com a IA
-- Compartilhe conhecimento, skills, prompts etc. (a tecnologia é nova e todos estamos aprendendo a usá-la)  
+- Conheça o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que ele pode fazer com a IA
+- Compartilhe conhecimento, skills, prompts etc. A tecnologia é nova e todos estamos aprendendo a usá-la  
 
 ---
 
-**Referências:**
+# Referências
 
 - [ANTHROPIC. Agent Skills (docs)](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 
