@@ -16,7 +16,7 @@ style: |
 
 ## José Eduardo de Souza Pimentel
 
-[GitHub](https://github.com/jespimentel) | [Blog](https://jespimentel.blogspot.com/) | [YouTube](https://www.youtube.com/@jespimentel)
+[Blog](https://jespimentel.blogspot.com/) | [GitHub](https://github.com/jespimentel) | [YouTube](https://www.youtube.com/@jespimentel)
 
 v. 20261116
 
@@ -296,7 +296,7 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 - Tecnologia agnóstica (Padrão aberto)
 - O que é?
     - No mínimo: uma pasta com o arquivo SKILL.md
-    - _Frontamatter_ (`YAML`) pré-carregado:
+    - _Frontmatter_ (`YAML`) pré-carregado:
         - `name`: nome da Skill
         - `description`: o que faz + gatilho
     - Corpo: instruções de execução
@@ -385,7 +385,7 @@ Google Drive (externo, via MCP)
 
 - [ANTHROPIC. Agent Skills (docs)](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 
-- [____. Claude Suport. Como criar habilidades personalizadas](https://support.claude.com/pt/articles/12512198-como-criar-habilidades-personalizadas)
+- [____. Claude Support. Como criar habilidades personalizadas](https://support.claude.com/pt/articles/12512198-como-criar-habilidades-personalizadas)
 
 - [____. Repositório público de skills](https://github.com/anthropics/skills)
 
