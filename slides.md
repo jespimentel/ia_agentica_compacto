@@ -18,7 +18,7 @@ style: |
 
 [Blog](https://jespimentel.blogspot.com/) | [GitHub](https://github.com/jespimentel) | [YouTube](https://www.youtube.com/@jespimentel)
 
-v. 20261116
+v. 20261126
 
 ---
 
@@ -31,11 +31,11 @@ v. 20261116
 - Evolução das LLMs
 - Engenharias de Prompt e de Contexto
 - Skills e MCP (conectores e plugins)
-- Agentes de Execução
+- Agentes "declarativos" e de Execução
 
 **Prática de IA Agêntica**
 
-**Dicas e Conclusões**
+**Dicas e conclusões**
 
 ---
 
@@ -86,16 +86,12 @@ table {
 }
 </style>
 
-# Determinístico X Probabilístico
+# Determinístico vs. Probabilístico (no chat)
 
 | | |
 |---|---|
 | ![w:380px](img/deterministico.jpg) | ![w:380px](img/probabilistico.jpg) |
 <!-- _footer: "Fonte: o autor." -->
----
-
-![bg w:1000](img/economia-tempo.jpg)
-<!-- _footer: "Fonte: HUYEN, Chip. AI Engineering: Building Applications with Foundation Models [ebook]." -->
 
 ---
 
@@ -132,28 +128,8 @@ table {
 
 ---
 
-# A petição que é lida pela IA do juiz
-
-- Síntese na abertura: pedido, fatos e provas (se possível)
-- Seções e parágrafos numerados, curtos e monotemáticos (RAG)
-- Prova com remissão exata (fls./ID)
-- Pedidos numerados e específicos no fecho (repetição)
-- Enxuta (talvez seja lida por um humano)
-- Sem comandos ocultos (_prompt injection_)
-- Conferida pelo Promotor de Justiça (risco de alucinação)
-
----
-
-# Aviso nº 009/2025-CGMP
-
-- Regulamentação do uso da IA no MPSP
-- O que devemos **realmente** restringir?
-
----
-
-![bg right fit](img/trafico-gpt.png)
-
-> **Curiosidade:** em processo sob nossa análise, a ré usou o ChatGPT para gerar o "cardápio" com os tipos de drogas que comercializava
+![bg w:1000](img/economia-tempo.jpg)
+<!-- _footer: "Fonte: HUYEN, Chip. AI Engineering: Building Applications with Foundation Models [ebook]." -->
 
 ---
 
@@ -250,34 +226,6 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 ---
 
-# Visão geral do agente "declarativo" do Copilot
-
-**Conhecimento**
-
-> Recuperação probabilística por RAG / RAG Agêntico
-
-- **No prompt**: o que se aplica sempre (regras, template, restrições)
-- **No conhecimento**: referência estável, consultada conforme o caso (ex.: catálogo de modelos, manual de regras)
-- **Atenção**: RAG recupera contexto; não é memória e não garante a veracidade da resposta
-
----
-
-# Padronização
-
-**Compartilhamento de agente entre os membros da equipe**
-
-![bg fit right](img/compartilhamento.png)
-<!-- _footer: "Fonte: O autor." --> 
-
----
-
-**RAG com o Copilot Premium**
-
-![](img/copilot-premium.png)
-<!-- _footer: "Fonte: O autor." --> 
-
----
-
 # Context engineering
 
 > A tendência conceitual mais importante atualmente é a passagem de prompt engineering para context engineering. Em sistemas agênticos, a qualidade não depende apenas da instrução, mas também de quais documentos, exemplos, resultados de busca, ferramentas, memórias, skills e estados devem entrar na janela de contexto. 
@@ -300,6 +248,7 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
         - `name`: nome da Skill
         - `description`: o que faz + gatilho
     - Corpo: instruções de execução
+- Subpastas opcionais: **references** (documentação, exemplos), **assets** (templates, documento-base) e **scripts** (automações, utilitários)
 - Regra prática: < 500 linhas
 
 ---
@@ -338,14 +287,42 @@ Google Drive (externo, via MCP)
 
 ---
 
-# Copilot e Skills
+# Agentes "declarativos" e Skills do Copilot
 
-![w:600](img/copilot-skills.jpg)
-<!-- _footer: "Fonte: o autor." --> 
+- **No prompt**: o que se aplica sempre (regras, template, restrições)
+- **No conhecimento**: referência estável, consultada conforme o caso (ex.: catálogo de modelos, manual de regras)
+- **Atenção**: RAG recupera contexto (probabilístico); não é memória e não garante a veracidade da resposta
 
 ---
 
-# Agentes de Execução no seu computador
+**RAG com o Copilot Premium**
+
+![](img/copilot-premium.png)
+<!-- _footer: "Fonte: O autor." --> 
+
+---
+
+<style>
+table, th, td { 
+  border: none !important; 
+  background: transparent !important; 
+}
+table {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+</style>
+
+# Copilot e Skills
+
+| | |
+|---|---|
+| ![w:480px](img/copilot-skills.jpg) | ![w:800px](img/copilot-plugins.jpg) |
+<!-- _footer: "Fonte: o autor." -->
+
+---
+
+# Agentes de Execução no VS Code
 
 - Quando usar?
     - Para tarefas autônomas que exigem execução de código e controle de estado
@@ -369,28 +346,68 @@ Google Drive (externo, via MCP)
 
 ---
 
+# A petição dirigida ao juiz (que usa IA)
+
+- Síntese na abertura: pedido, fatos e provas (se possível)
+- Seções e parágrafos numerados, curtos e monotemáticos (RAG)
+- Prova com remissão exata (fls./ID)
+- Pedidos numerados e específicos no fecho (repetição)
+- Enxuta (para que talvez seja lida por um humano)
+- Sem comandos ocultos (_prompt injection_)
+- Conferida pelo Promotor de Justiça (risco de alucinação)
+
+---
+
+# Aviso nº 009/2025-CGMP
+
+- Utilização prioritária do **Copilot**
+- Anonimização  de dados
+- Abstenção de compartilhamento de dados sensíveis/sigilosos
+- Revisão do conteúdo gerado (risco de alucinação)
+
+---
+
+![bg right fit](img/trafico-gpt.png)
+
+> **Curiosidade:** em processo sob nossa análise, a ré usou o ChatGPT para gerar o "cardápio" com os tipos de drogas que comercializava
+
+---
+
 # Dicas / Conclusões
 
-- Estrutura de prompt com Markdown ou XML não é estética, é **semântica**
-- Em agentes, pense em **Context Engineering**: passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py) a produção da Promotoria
-- Divida tarefas complexas em subtarefas
-- Modelo importa, mas harness, ferramentas, contexto, estado e dados determinam a eficiência
-- Teste o VS Code com as extensões do Claude, Codex e Continue
-- Conheça o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que ele pode fazer com a IA
-- Compartilhe conhecimento, skills, prompts etc. A tecnologia é nova e todos estamos aprendendo a usá-la  
+- Estruture prompts com Markdown ou XML para maior **semântica**
+- Divida tarefas complexas em subtarefas. Crie agentes **superespecializados**
+- Pense em **Context Engineering** e passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py) a produção da Promotoria
+- Teste o VS Code com as extensões do Claude, Codex e Continue e pratique o "vibe coding"
+- Entenda o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que é possível fazer ao combiná-lo com a IA
+- Compartilhe conhecimento, skills, prompts etc. A tecnologia é nova e estamos aprendendo a usá-la juntos  
 
 ---
 
 # Referências
 
-- [ANTHROPIC. Agent Skills (docs)](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- ANTHROPIC. **Agent Skills: overview**. Claude Docs, [s.d.]. Disponível em: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview. Acesso em: 26 nov. 2026.
 
-- [____. Claude Support. Como criar habilidades personalizadas](https://support.claude.com/pt/articles/12512198-como-criar-habilidades-personalizadas)
+- ANTHROPIC. **Como criar habilidades personalizadas**. Claude Support, [s.d.]. Disponível em: https://support.claude.com/pt/articles/12512198-como-criar-habilidades-personalizadas. Acesso em: 26 nov. 2026.
 
-- [____. Repositório público de skills](https://github.com/anthropics/skills)
+- ANTHROPIC. **Contextual retrieval in AI systems**. San Francisco: Anthropic, 19 set. 2024. Disponível em: https://www.anthropic.com/news/contextual-retrieval. Acesso em: 26 nov. 2026.
 
-- [____. The Complete Guide to Building Skills for Claude](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
+- ANTHROPIC. **Skills**. GitHub, [s.d.]. Disponível em: https://github.com/anthropics/skills. Acesso em: 26 nov. 2026.
 
-- [PIMENTEL, José Eduardo de Souza. A IA Generativa na Promotoria (apostila)](https://github.com/jespimentel/ia_gen_na_promotoria/blob/main/apostila/IA_Gen_Promotoria_Pimentel.pdf)
+---
 
-- [____. Minicurso de Bauru (site)](https://jespimentel.github.io/minicurso_bauru/)
+- ANTHROPIC. **The complete guide to building skills for Claude**. [s.d.]. Disponível em: https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf. Acesso em: 26 nov. 2026.
+
+- HE, Yifeng et al. **Is progressive disclosure all you need for long-context agents?** arXiv preprint arXiv:2607.17598, 2026. Disponível em: https://arxiv.org/abs/2607.17598. Acesso em: 26 nov. 2026.
+
+- NOY, Shakked; ZHANG, Whitney. **Experimental evidence on the productivity effects of generative artificial intelligence**. *Science*, v. 381, n. 6654, p. 187–192, 2023. Disponível em: https://economics.mit.edu/sites/default/files/inline-files/Noy_Zhang_1.pdf. Acesso em: 26 nov. 2026.
+
+- VASWANI, Ashish et al. **Attention is all you need**. In: *Advances in Neural Information Processing Systems 30 (NeurIPS)*, p. 5998–6008, 2017. Disponível em: https://arxiv.org/abs/1706.03762. Acesso em: 26 nov. 2026.
+
+---
+
+# Obrigado!
+
+## pimentel@mpsp.mp.br
+
+
