@@ -28,7 +28,7 @@ section.columns h2 {
 <h1 id="prompts-skills-e-agentes-de-ia-para-a-promotoria-de-justi%C3%A7a">Prompts, Skills e Agentes de IA para a Promotoria de Justiça</h1>
 <h2 id="jos%C3%A9-eduardo-de-souza-pimentel">José Eduardo de Souza Pimentel</h2>
 <p><a href="https://jespimentel.blogspot.com/">Blog</a> | <a href="https://github.com/jespimentel">GitHub</a> | <a href="https://www.youtube.com/@jespimentel">YouTube</a></p>
-<p>v. 20261126</p>
+<p>v. 20261127</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-style="section.columns {
   display: grid;
@@ -301,7 +301,7 @@ section.columns h2 {
   grid-column: 1 / -1;
 }
 ;">
-<h1 id="determin%C3%ADstico-vs-probabil%C3%ADstico-no-chat">Determinístico vs. Probabilístico (no chat)</h1>
+<h1 id="determin%C3%ADstico-vs-probabil%C3%ADstico-testando-no-chat">Determinístico vs. Probabilístico (testando no chat)</h1>
 <table>
 <thead>
 <tr>
@@ -318,7 +318,7 @@ section.columns h2 {
 </table>
 <footer>Fonte: o autor.</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-style="section.columns {
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-footer="Fonte: o autor." data-style="section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -326,7 +326,7 @@ section.columns h2 {
 section.columns h2 {
   grid-column: 1 / -1;
 }
-" lang="en-US" style="--style:section.columns {
+" lang="en-US" style="--footer:Fonte: o autor.;--style:section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -334,7 +334,7 @@ section.columns h2 {
 section.columns h2 {
   grid-column: 1 / -1;
 }
-;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;img/ocr.jpg&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="9" data-style="section.columns {
+;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;img/ocr.jpg&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="9" data-footer="Fonte: o autor." data-style="section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -342,7 +342,7 @@ section.columns h2 {
 section.columns h2 {
   grid-column: 1 / -1;
 }
-" lang="en-US" style="--style:section.columns {
+" lang="en-US" style="--footer:Fonte: o autor.;--style:section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -360,11 +360,12 @@ section.columns h2 {
 </ul>
 <h2 id="alternativas">Alternativas</h2>
 <ul>
-<li>Docling</li>
+<li>Docling (a estrutura importa)</li>
 <li>Tesseract &gt; md</li>
 </ul>
+<footer>Fonte: o autor.</footer>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-style="section.columns {
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-footer="Fonte: o autor." data-style="section.columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -769,24 +770,23 @@ section.columns h2 {
   grid-column: 1 / -1;
 }
 ;">
-<p><strong>Skills</strong>: mecanismos de descoberta e carregamento <strong>sob demanda</strong>, que evitam o contexto excessivo.</p>
+<p><strong>Skill</strong>: pasta de instruções e carregamento <strong>sob demanda</strong>, que evita o contexto excessivo.</p>
 <ul>
-<li>Quando usar?</li>
-<li>Tecnologia agnóstica (Padrão aberto)</li>
+<li>Padrão aberto</li>
 <li>O que é?
 <ul>
 <li>No mínimo: uma pasta com o arquivo SKILL.md</li>
 <li><em>Frontmatter</em> (<code>YAML</code>) pré-carregado:
 <ul>
 <li><code>name</code>: nome da Skill</li>
-<li><code>description</code>: o que faz + gatilho</li>
+<li><code>description</code>: o que faz + <strong>gatilho de ativação</strong></li>
 </ul>
 </li>
 <li>Corpo: instruções de execução</li>
 </ul>
 </li>
-<li>Subpastas opcionais: <strong>references</strong> (documentação, exemplos), <strong>assets</strong> (templates, documento-base) e <strong>scripts</strong> (automações, utilitários)</li>
-<li>Regra prática: &lt; 500 linhas</li>
+<li>Subpastas opcionais: <strong>references</strong> (o que o modelo lê para aprender ou consultar, como peças, jurisprudência, critérios e índice), <strong>assets</strong> (o que entra na saída ou serve de molde, incluindo templates com {{PLACEHOLDERS}}, timbres/logomarcas e arquivos-base) e <strong>scripts</strong> (automações, utilitários)</li>
+<li>Regra prática: &lt; 500 linhas (para o corpo de SKILL.md)</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-style="section.columns {
@@ -849,16 +849,19 @@ section.columns h2 {
 <p><strong>Exemplo:</strong> <em><strong>Progressive Disclosure</strong></em></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">elaborar-denuncia/            # sobe como .zip (ou botão &quot;salvar&quot;) em Customize &gt; Skills
 ├── SKILL.md                  # frontmatter (name + description/gatilho) + método
-└── references/               # descoberta progressiva (lido sob demanda)
-<span class="hljs-code">    ├── template.md           # estrutura da peça — lido só ao redigir
-    └── exemplos.md           # exemplos de saída — só sem modelo do índice/colado
+│                             # + instrução: &quot;buscar modelos no Drive via MCP&quot;
+├── assets/
+│   └── template.md           # estrutura da peça com {{PLACEHOLDERS}} (lido só ao redigir)
+└── references/
+<span class="hljs-code">    └── exemplos.md           # exemplos de saída (só se não houver modelo no índice/colado)
 </span>
 <span class="hljs-section"># Fora da skill (não é empacotado):</span>
-Conector Google Drive .......... ligado na UI de conectores (sem arquivo)
-Google Drive (externo, via MCP)
-└── modelos<span class="hljs-emphasis">_denuncias/
-    ├── indice.md
-    └── *.md                   # modelos de peças
+MCP (Model Context Protocol)
+└── Conector Google Drive ...... ligado na UI de conectores (sem arquivo)
+<span class="hljs-code">    └── Google Drive (externo)
+        └── modelos_denuncias/
+            ├── indice.md       # resumo padronizado de cada modelo
+            └── *.md            # modelos de peças
 </span></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-style="section.columns {
@@ -882,8 +885,10 @@ section.columns h2 {
 <ul>
 <li><strong>No prompt</strong>: o que se aplica sempre (regras, template, restrições)</li>
 <li><strong>No conhecimento</strong>: referência estável, consultada conforme o caso (ex.: catálogo de modelos, manual de regras)</li>
-<li><strong>Atenção</strong>: RAG recupera contexto (probabilístico); não é memória e não garante a veracidade da resposta</li>
 </ul>
+<blockquote>
+<p><strong>Atenção</strong>: RAG recupera contexto (probabilístico); não é memória e não garante a veracidade da resposta</p>
+</blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-footer="Fonte: O autor." data-style="section.columns {
   display: grid;
@@ -902,7 +907,7 @@ section.columns h2 {
   grid-column: 1 / -1;
 }
 ;">
-<p><strong>RAG com o Copilot Premium</strong></p>
+<p><strong>Copilot Premium</strong></p>
 <p><img src="img/copilot-premium.png" alt="" /></p>
 <footer>Fonte: O autor.</footer>
 </section>
@@ -923,7 +928,7 @@ section.columns h2 {
   grid-column: 1 / -1;
 }
 ;">
-<h1 id="copilot-e-skills">Copilot e Skills</h1>
+<h1 id="carregamento-de-skills-no-copilot">Carregamento de Skills no Copilot</h1>
 <table>
 <thead>
 <tr>
@@ -1155,11 +1160,11 @@ section.columns h2 {
 ;">
 <h1 id="dicas--conclus%C3%B5es">Dicas / Conclusões</h1>
 <ul>
-<li>Estruture prompts com Markdown ou XML para maior <strong>semântica</strong></li>
+<li>Estruture prompts com Markdown ou XML para obter <strong>semântica</strong></li>
 <li>Divida tarefas complexas em subtarefas. Crie agentes <strong>superespecializados</strong></li>
 <li>Pense em <strong>Context Engineering</strong> e passe a <a href="https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py">arquivar/indexar</a> a produção da Promotoria</li>
 <li>Teste o VS Code com as extensões do Claude, Codex e Continue e pratique o &quot;vibe coding&quot;</li>
-<li>Entenda o <a href="https://jespimentel.github.io/curso_rapido_python/">Python</a> e o que é possível fazer ao combiná-lo com a IA</li>
+<li>Entenda o <a href="https://jespimentel.github.io/curso_rapido_python/">Python</a> e o que é possível fazer em conjunto com a IA</li>
 <li>Compartilhe conhecimento, skills, prompts etc. A tecnologia é nova e estamos aprendendo a usá-la juntos</li>
 </ul>
 </section>

@@ -18,7 +18,7 @@ style: |
 
 [Blog](https://jespimentel.blogspot.com/) | [GitHub](https://github.com/jespimentel) | [YouTube](https://www.youtube.com/@jespimentel)
 
-v. 20261126
+v. 20261127
 
 ---
 
@@ -86,7 +86,7 @@ table {
 }
 </style>
 
-# Determinístico vs. Probabilístico (no chat)
+# Determinístico vs. Probabilístico (testando no chat)
 
 | | |
 |---|---|
@@ -104,10 +104,11 @@ table {
 
 ## Alternativas
 
-- Docling
+- Docling (a estrutura importa)
 - Tesseract > md
 
 ![bg right fit](img/ocr.jpg)
+<!-- _footer: "Fonte: o autor." -->
 
 ---
 
@@ -238,18 +239,17 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 
 ---
 
-**Skills**: mecanismos de descoberta e carregamento **sob demanda**, que evitam o contexto excessivo.
+**Skill**: pasta de instruções e carregamento **sob demanda**, que evita o contexto excessivo.
 
-- Quando usar?
-- Tecnologia agnóstica (Padrão aberto)
+- Padrão aberto
 - O que é?
     - No mínimo: uma pasta com o arquivo SKILL.md
     - _Frontmatter_ (`YAML`) pré-carregado:
         - `name`: nome da Skill
-        - `description`: o que faz + gatilho
+        - `description`: o que faz + **gatilho de ativação**
     - Corpo: instruções de execução
-- Subpastas opcionais: **references** (documentação, exemplos), **assets** (templates, documento-base) e **scripts** (automações, utilitários)
-- Regra prática: < 500 linhas
+- Subpastas opcionais: **references** (o que o modelo lê para aprender ou consultar, como peças, jurisprudência, critérios e índice), **assets** (o que entra na saída ou serve de molde, incluindo templates com {{PLACEHOLDERS}}, timbres/logomarcas e arquivos-base) e **scripts** (automações, utilitários)
+- Regra prática: < 500 linhas (para o corpo de SKILL.md)
 
 ---
 
@@ -273,16 +273,19 @@ protocolado em {{DATA_PROTOCOLO}}, considerando o prazo final em {{DATA_LIMITE}}
 ```markdown
 elaborar-denuncia/            # sobe como .zip (ou botão "salvar") em Customize > Skills
 ├── SKILL.md                  # frontmatter (name + description/gatilho) + método
-└── references/               # descoberta progressiva (lido sob demanda)
-    ├── template.md           # estrutura da peça — lido só ao redigir
-    └── exemplos.md           # exemplos de saída — só sem modelo do índice/colado
+│                             # + instrução: "buscar modelos no Drive via MCP"
+├── assets/
+│   └── template.md           # estrutura da peça com {{PLACEHOLDERS}} (lido só ao redigir)
+└── references/
+    └── exemplos.md           # exemplos de saída (só se não houver modelo no índice/colado)
 
 # Fora da skill (não é empacotado):
-Conector Google Drive .......... ligado na UI de conectores (sem arquivo)
-Google Drive (externo, via MCP)
-└── modelos_denuncias/
-    ├── indice.md
-    └── *.md                   # modelos de peças
+MCP (Model Context Protocol)
+└── Conector Google Drive ...... ligado na UI de conectores (sem arquivo)
+    └── Google Drive (externo)
+        └── modelos_denuncias/
+            ├── indice.md       # resumo padronizado de cada modelo
+            └── *.md            # modelos de peças
 ```
 
 ---
@@ -291,11 +294,11 @@ Google Drive (externo, via MCP)
 
 - **No prompt**: o que se aplica sempre (regras, template, restrições)
 - **No conhecimento**: referência estável, consultada conforme o caso (ex.: catálogo de modelos, manual de regras)
-- **Atenção**: RAG recupera contexto (probabilístico); não é memória e não garante a veracidade da resposta
+> **Atenção**: RAG recupera contexto (probabilístico); não é memória e não garante a veracidade da resposta
 
 ---
 
-**RAG com o Copilot Premium**
+**Copilot Premium**
 
 ![](img/copilot-premium.png)
 <!-- _footer: "Fonte: O autor." --> 
@@ -313,7 +316,7 @@ table {
 }
 </style>
 
-# Copilot e Skills
+# Carregamento de Skills no Copilot
 
 | | |
 |---|---|
@@ -375,11 +378,11 @@ table {
 
 # Dicas / Conclusões
 
-- Estruture prompts com Markdown ou XML para maior **semântica**
+- Estruture prompts com Markdown ou XML para obter **semântica**
 - Divida tarefas complexas em subtarefas. Crie agentes **superespecializados**
 - Pense em **Context Engineering** e passe a [arquivar/indexar](https://github.com/jespimentel/ia_agentica_compacto/blob/main/scripts/renomeador.py) a produção da Promotoria
 - Teste o VS Code com as extensões do Claude, Codex e Continue e pratique o "vibe coding"
-- Entenda o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que é possível fazer ao combiná-lo com a IA
+- Entenda o [Python](https://jespimentel.github.io/curso_rapido_python/) e o que é possível fazer em conjunto com a IA
 - Compartilhe conhecimento, skills, prompts etc. A tecnologia é nova e estamos aprendendo a usá-la juntos  
 
 ---
