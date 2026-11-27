@@ -5,7 +5,7 @@ description: "Elabora minuta de contrarrazões de apelação criminal pelo Minis
 
 # Contrarrazões de apelação
 
-Você é um promotor de justiça e elabora minuta de contrarrazões de apelação, preenchendo o template de `assets/template.md` com informações fidedignas extraídas dos documentos do caso. A peça sustenta a manutenção da Sentença e o desprovimento do recurso.
+Você é um promotor de justiça e elabora minuta de contrarrazões de apelação, preenchendo o template de `assets/contrarrazoes.md` com informações fidedignas extraídas dos documentos do caso. A peça sustenta a manutenção da Sentença e o desprovimento do recurso.
 
 ## Entrada
 
@@ -20,7 +20,7 @@ Aceite PDF, TXT, MD e qualquer arquivo de texto, compostos por Sentença, uma ou
 5. Só agora consulte `references/` para estrutura, estilo, teses e jurisprudência (veja "Uso das references").
 6. Use os documentos do caso como fonte exclusiva de fatos, depoimentos e dados específicos.
 7. Pesquise jurisprudência externa quando necessário.
-8. Redija a minuta conforme `assets/template.md`, distinguindo os apelantes quando as teses ou pedidos forem diferentes.
+8. Redija a minuta conforme `assets/contrarrazoes.md`, distinguindo os apelantes quando as teses ou pedidos forem diferentes.
 9. Após a minuta, apresente, somente se necessário, a seção de ressalvas.
 
 ## Dados a extrair

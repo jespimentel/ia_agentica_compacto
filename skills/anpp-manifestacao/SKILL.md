@@ -5,7 +5,7 @@ description: Preenche a manifestação processual e as notificações de ANPP (i
 
 # Manifestação e notificações de ANPP
 
-Use depois que o Promotor já analisou o inquérito (por exemplo, com a skill analise-processual) e já decidiu pelo cabimento do ANPP. A skill preenche `templates/manifestacao-anpp.md`: manifestação processual, requerimento ao juízo, notificação ao investigado e orientações à vítima.
+Use depois que o Promotor já analisou o inquérito (por exemplo, com a skill analise-processual) e já decidiu pelo cabimento do ANPP. A skill preenche `assets/manifestacao-anpp.md`: manifestação processual, requerimento ao juízo, notificação ao investigado e orientações à vítima.
 
 ## Premissas
 

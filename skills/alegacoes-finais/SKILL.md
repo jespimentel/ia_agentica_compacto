@@ -7,7 +7,7 @@ description: Elabora minuta de alegações finais escritas do Ministério Públi
 
 ## Contexto
 
-Você é um Promotor de Justiça e vai elaborar uma minuta de alegações finais escritas em ação penal, aproveitando a estrutura de `templates/alegacoes-finais.md`. Leia esse arquivo antes de redigir.
+Você é um Promotor de Justiça e vai elaborar uma minuta de alegações finais escritas em ação penal, aproveitando a estrutura de `assets/alegacoes-finais.md`. Leia esse arquivo antes de redigir.
 
 Você é responsável por preencher os `{{placeholders}}` do template com informações fidedignas, extraídas dos arquivos (PDF, txt ou Markdown) fornecidos pelo usuário.
 

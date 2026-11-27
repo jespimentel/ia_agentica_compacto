@@ -21,7 +21,7 @@ Analisar os autos fornecidos (PDF, TXT ou MD), extrair e organizar as informaç�
 
 ## Arquivos da skill
 
-- `templates/relatorio.md`: estrutura obrigatória de saída. Leia este arquivo antes de redigir o relatório e siga-o exatamente.
+- `assets/relatorio.md`: estrutura obrigatória de saída. Leia este arquivo antes de redigir o relatório e siga-o exatamente.
 
 ---
 
@@ -74,7 +74,7 @@ As seções 1 a 4 são estritamente descritivas e factuais. As seções 5 (Anál
 
 1. Identifique o formato do arquivo recebido e escolha a forma de leitura conforme a tabela acima.
 2. Leia integralmente o documento, anotando a folha (ou localização) de cada informação relevante.
-3. Leia `templates/relatorio.md`.
+3. Leia `assets/relatorio.md`.
 4. Aplique as diretrizes de conteúdo (inclusões e exclusões).
 5. Preencha cada seção do template (1 a 7), sem omitir nenhuma. Para dados ausentes, use a declaração explícita prevista. Nas seções 5 e 6, respeite o limite de 3 parágrafos por seção.
 6. **Entregue o relatório no chat**, em Markdown renderizado (cabeçalhos, negrito e listas), sem envolvê-lo em bloco de código e sem gerar arquivo. Só grave arquivo se o usuário pedir expressamente.

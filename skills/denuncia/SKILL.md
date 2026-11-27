@@ -1,6 +1,6 @@
 ---
 name: denuncia
-description: 'Redige, no próprio chat, minuta de denúncia criminal mediante pedido expresso, a partir de PDF, TXT ou Markdown fornecido pelo usuário. Usa references/ (com o índice references/indice.md) apenas como referência de estilo e templates/denuncia.md como estrutura.'
+description: 'Redige, no próprio chat, minuta de denúncia criminal mediante pedido expresso, a partir de PDF, TXT ou Markdown fornecido pelo usuário. Usa references/ (com o índice references/indice.md) apenas como referência de estilo e assets/denuncia.md como estrutura.'
 ---
 
 # Skill: Elaboração de Denúncia Criminal
@@ -62,7 +62,7 @@ Fluxo obrigatório:
 
 3. Leia apenas o arquivo escolhido, em `references/`, e extraia exclusivamente sua forma: o encadeamento dos blocos “Consta...”, o bloco único “Apurou-se que”, o fraseado da capitulação e do pedido final, inclusive a fórmula de notificação ou citação e o formato do rol.
 
-4. Se nenhum arquivo for plenamente aderente quanto ao tipo penal e ao modus operandi, escolha o arquivo de espécie de crime mais próxima do caso (por exemplo, outro crime patrimonial para um crime patrimonial, outro crime contra a pessoa para um crime contra a pessoa) e use-o apenas como referência de forma e estilo, nunca de fato. Registre na análise preliminar “material recuperado não plenamente aderente” e identifique o arquivo usado como referência aproximada. Se não houver nenhum arquivo de espécie minimamente próxima, registre “material recuperado não aderente” e aplique apenas a estrutura de `templates/denuncia.md`.
+4. Se nenhum arquivo for plenamente aderente quanto ao tipo penal e ao modus operandi, escolha o arquivo de espécie de crime mais próxima do caso (por exemplo, outro crime patrimonial para um crime patrimonial, outro crime contra a pessoa para um crime contra a pessoa) e use-o apenas como referência de forma e estilo, nunca de fato. Registre na análise preliminar “material recuperado não plenamente aderente” e identifique o arquivo usado como referência aproximada. Se não houver nenhum arquivo de espécie minimamente próxima, registre “material recuperado não aderente” e aplique apenas a estrutura de `assets/denuncia.md`.
 
 5. Informe ao usuário, em uma linha, qual arquivo foi utilizado como referência (plena ou aproximada) ou que nenhum arquivo era aderente.
 
@@ -166,7 +166,7 @@ Se o número de pessoas exceder o limite legal, registre o excedente na análise
 
 - Não use pesquisa na internet, jurisprudência, notícias, bancos de dados ou memória geral para completar fatos do caso.
 
-- Não inclua fotografias, imagens, esquemas ou gráficos na minuta da denúncia, ainda que constem do arquivo-fonte ou de `references/`. A minuta é sempre texto em prosa corrida; referencie a prova visual apenas por remissão a fls. (ex.: "cf. fotografias de fls. X"), nunca a reproduza ou descreva graficamente no corpo da peça. Observe o formato de `templates/denuncia.md` e de `references/` quanto a isso.
+- Não inclua fotografias, imagens, esquemas ou gráficos na minuta da denúncia, ainda que constem do arquivo-fonte ou de `references/`. A minuta é sempre texto em prosa corrida; referencie a prova visual apenas por remissão a fls. (ex.: "cf. fotografias de fls. X"), nunca a reproduza ou descreva graficamente no corpo da peça. Observe o formato de `assets/denuncia.md` e de `references/` quanto a isso.
 
 ## Elementos adicionais do usuário
 
@@ -220,7 +220,7 @@ Ao processar um único caso, apresente esse bloco antes do texto da denúncia. S
 
 5. Produza a análise preliminar e confira se todas as imputações aparecem na capitulação final.
 
-6. Leia `templates/denuncia.md` imediatamente antes de redigir.
+6. Leia `assets/denuncia.md` imediatamente antes de redigir.
 
 7. Preencha o template com os dados do arquivo-fonte, substituindo todos os placeholders por texto corrido. Não deixe chaves ou marcações visíveis, salvo “NÃO CONSTA NOS AUTOS” quando cabível.
 
