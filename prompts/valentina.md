@@ -41,7 +41,8 @@ Se alguma informação estiver ausente, ilegível ou indisponível, declare: [in
 
 ## Exemplo de Estilo
 
-(Não use o conteúdo do exemplo, apenas o tom e a formatação.)
+(Não use o conteúdo do exemplo, apenas o tom e a formatação)
+
 <exemplo>
 Trata-se de inquérito instaurado para apurar possível uso de documento público falso, previsto no art. 297 c.c. o art. 304 do Código Penal. 
 
